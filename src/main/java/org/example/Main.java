@@ -11,29 +11,33 @@ import org.example.task3.Student;
 import org.example.task3.Teacher;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Main {
 
-//    public static void main(String[] args) {
-//        int NACCOUNTS = 10;
-//        int INITIAL_BALANCE = 10000;
-//        Bank b = new Bank(NACCOUNTS, INITIAL_BALANCE);
-//        int i;
-//        for (i = 0; i < NACCOUNTS; i++) {
-//            Transferer t = new Transferer(b, i, INITIAL_BALANCE);
-//            t.setPriority(Thread.NORM_PRIORITY + i % 2);
-//            t.start();
-//        }
-//    }
-
-//    public static void main(String[] args) {
-//        Drop drop = new Drop();
-//        (new Thread(new Producer(drop, 1000))).start();
-//        (new Thread(new Consumer(drop))).start();
-//    }
 
     public static void main(String[] args) {
+        setUpTask3();
+    }
+
+    private static void setUpTask1() {
+        int NACCOUNTS = 10;
+        int INITIAL_BALANCE = 10000;
+        Bank b = new Bank(NACCOUNTS, INITIAL_BALANCE);
+        int i;
+        for (i = 0; i < NACCOUNTS; i++) {
+            Transferer t = new Transferer(b, i, INITIAL_BALANCE);
+            t.setPriority(Thread.NORM_PRIORITY + i % 2);
+            t.start();
+        }
+    }
+
+    private static void setUpTask2() {
+        Drop drop = new Drop();
+        (new Thread(new Producer(drop, 1000))).start();
+        (new Thread(new Consumer(drop))).start();
+    }
+
+    private static void setUpTask3() {
         String[] subjects = {
                 "Jesseology"
         };
@@ -105,7 +109,7 @@ public class Main {
                 new Teacher(journal, Arrays.stream(mk4).toList())
         };
         List<Thread> started = new ArrayList<>();
-        for(int i=0; i<10000; i++) {
+        for (int i = 0; i < 10000; i++) {
             Arrays.stream(teachers).map(Thread::new).forEach(thread -> {
                 thread.start();
                 started.add(thread);
@@ -119,9 +123,9 @@ public class Main {
             }
         }
 
-        int numOfMarks =0;
-        for(Student student: journal.getStudents()) {
-            numOfMarks+=student.getMarks(subjects[0]).size();
+        int numOfMarks = 0;
+        for (Student student : journal.getStudents()) {
+            numOfMarks += student.getMarks(subjects[0]).size();
             System.out.println(student);
         }
         System.out.println("----------------");

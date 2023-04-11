@@ -1,7 +1,6 @@
 package org.example.task3;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.util.*;
